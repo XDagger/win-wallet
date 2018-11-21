@@ -1,0 +1,3 @@
+[submodule "xdagwallet"]
+	path = xdagwallet
+	url = https://github.com/xdagger/xdagwallet
