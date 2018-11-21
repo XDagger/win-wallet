@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="..\xDagWallet\src\client\block.c" />
+    <ClCompile Include="..\xDagWallet\src\client\client.c" />
+    <ClCompile Include="..\xDagWallet\src\client\commands.c" />
+    <ClCompile Include="..\xDagWallet\src\client\common.c" />
+    <ClCompile Include="..\xDagWallet\src\client\crypt.c" />
+    <ClCompile Include="..\xDagWallet\src\client\dnet_crypt.c" />
+    <ClCompile Include="..\xDagWallet\src\client\hash.c" />
+    <ClCompile Include="..\xDagWallet\src\client\init.c" />
+    <ClCompile Include="..\xDagWallet\src\client\main.c" />
+    <ClCompile Include="..\xDagWallet\src\client\sha256.c" />
+    <ClCompile Include="..\xDagWallet\src\client\storage.c" />
+    <ClCompile Include="..\xDagWallet\src\client\terminal.c" />
+    <ClCompile Include="..\xDagWallet\src\client\wallet.c" />
+    <ClCompile Include="..\xDagWallet\src\client\xdag_wrapper.c" />
+    <ClCompile Include="..\xDagWallet\src\client\utils\log.c" />
+    <ClCompile Include="..\xDagWallet\src\client\utils\utils.c" />
+    <ClCompile Include="..\xDagWallet\src\dus\crc_c.c" />
+    <ClCompile Include="..\xDagWallet\src\dus\dfslib_crypt.c" />
+    <ClCompile Include="..\xDagWallet\src\dus\dfslib_random.c" />
+    <ClCompile Include="..\xDagWallet\src\dus\dfslib_string.c" />
+    <ClCompile Include="..\xDagWallet\src\dus\dfsrsa.c" />
+    <ClCompile Include="..\xDagWallet\src\win\getopt.c" />
+    <ClCompile Include="..\xDagWallet\src\client\address.c" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\xDagWallet\src\client\address.h" />
+    <ClInclude Include="..\xDagWallet\src\client\block.h" />
+    <ClInclude Include="..\xDagWallet\src\client\client.h" />
+    <ClInclude Include="..\xDagWallet\src\client\commands.h" />
+    <ClInclude Include="..\xDagWallet\src\client\common.h" />
+    <ClInclude Include="..\xDagWallet\src\client\crypt.h" />
+    <ClInclude Include="..\xDagWallet\src\client\dnet_crypt.h" />
+    <ClInclude Include="..\xDagWallet\src\client\errno.h" />
+    <ClInclude Include="..\xDagWallet\src\client\events.h" />
+    <ClInclude Include="..\xDagWallet\src\client\hash.h" />
+    <ClInclude Include="..\xDagWallet\src\client\init.h" />
+    <ClInclude Include="..\xDagWallet\src\client\sha256.h" />
+    <ClInclude Include="..\xDagWallet\src\client\state.h" />
+    <ClInclude Include="..\xDagWallet\src\client\storage.h" />
+    <ClInclude Include="..\xDagWallet\src\client\system.h" />
+    <ClInclude Include="..\xDagWallet\src\client\terminal.h" />
+    <ClInclude Include="..\xDagWallet\src\client\types.h" />
+    <ClInclude Include="..\xDagWallet\src\client\version.h" />
+    <ClInclude Include="..\xDagWallet\src\client\wallet.h" />
+    <ClInclude Include="..\xDagWallet\src\client\xdag_wrapper.h" />
+    <ClInclude Include="..\xDagWallet\src\client\utils\log.h" />
+    <ClInclude Include="..\xDagWallet\src\client\utils\utils.h" />
+    <ClInclude Include="..\xDagWallet\src\dus\crc_c.h" />
+    <ClInclude Include="..\xDagWallet\src\dus\dfslib_crypt.h" />
+    <ClInclude Include="..\xDagWallet\src\dus\dfslib_random.h" />
+    <ClInclude Include="..\xDagWallet\src\dus\dfslib_string.h" />
+    <ClInclude Include="..\xDagWallet\src\dus\dfslib_types.h" />
+    <ClInclude Include="..\xDagWallet\src\dus\dfsrsa.h" />
+    <ClInclude Include="..\xDagWallet\src\ldus\rbtree.h" />
+    <ClInclude Include="..\xDagWallet\src\win\getopt.h" />
+    <ClInclude Include="..\xDagWallet\src\win\unistd.h" />
+    <ClInclude Include="..\xDagWallet\src\win\wintime.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="..\xDagWallet\src\pools\netdb-testnet.txt" />
+    <Text Include="..\xDagWallet\src\pools\netdb-white-testnet.txt" />
+    <Text Include="..\xDagWallet\src\pools\netdb-white.txt" />
+    <Text Include="..\xDagWallet\src\pools\netdb.txt" />
+    <Text Include="..\xDagWallet\src\pools\pools-testnet.txt" />
+    <Text Include="..\xDagWallet\src\pools\pools.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="client">
+      <UniqueIdentifier>{00f220af-72f1-43a1-a91e-1f3405349576}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="dus">
+      <UniqueIdentifier>{117bc0a1-0baa-4089-abcc-bdb5d81d7bee}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="client\utils">
+      <UniqueIdentifier>{917c72e3-c611-4948-aca8-41ac53d89877}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="pools">
+      <UniqueIdentifier>{dc7e3bf0-eef6-4c64-bd3e-4c66f92f840b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ldus">
+      <UniqueIdentifier>{7f382ce5-99e1-47aa-92c4-d653061d5f62}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="win">
+      <UniqueIdentifier>{98fdfa0f-c975-4f2a-912b-4403d64ca7a4}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

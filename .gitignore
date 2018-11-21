@@ -3,6 +3,15 @@
 ##
 ## Get latest from https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
 
+
+# Visual Studio Folders
+xDagWalletWin/packages/
+xDagWalletWin/bin/
+xDagWalletWin/x64/
+
+
+
+
 # User-specific files
 *.suo
 *.user
