@@ -24,6 +24,7 @@
     <ClCompile Include="..\xDagWallet\src\dus\dfsrsa.c" />
     <ClCompile Include="..\xDagWallet\src\win\getopt.c" />
     <ClCompile Include="..\xDagWallet\src\client\address.c" />
+    <ClCompile Include="..\xDagWallet\src\win\winsockx.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\xDagWallet\src\client\address.h" />
@@ -58,6 +59,7 @@
     <ClInclude Include="..\xDagWallet\src\win\getopt.h" />
     <ClInclude Include="..\xDagWallet\src\win\unistd.h" />
     <ClInclude Include="..\xDagWallet\src\win\wintime.h" />
+    <ClInclude Include="..\xDagWallet\src\win\winsockx.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="..\xDagWallet\src\pools\netdb-testnet.txt" />

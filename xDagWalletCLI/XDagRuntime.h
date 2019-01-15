@@ -11,11 +11,16 @@ using namespace System::Runtime::InteropServices;
 #include "xdag_runtime.h"
 
 // external stdcall methods connects with xdag_runtime.h
+
+#if defined(_WIN64)
+typedef int(__stdcall * EventCallbackStd)(void*, xdag_event *);
 typedef int(__stdcall * InputPasswordStd)(const char*, char*, unsigned);
 typedef int(__stdcall * ShowStateStd)(const char*, const char*, const char*);
-
-typedef int(__stdcall * EventCallbackStd)(void*, xdag_event *);
-
+#else
+typedef int(__cdecl * EventCallbackStd)(void*, xdag_event *);
+typedef int(__cdecl * InputPasswordStd)(const char*, char*, unsigned);
+typedef int(__cdecl * ShowStateStd)(const char*, const char*, const char*);
+#endif
 #pragma managed
 
 namespace XDagNetWalletCLI {

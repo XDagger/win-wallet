@@ -50,6 +50,7 @@
     <ClCompile Include="..\xDagWallet\src\dus\dfslib_string.c" />
     <ClCompile Include="..\xDagWallet\src\dus\dfsrsa.c" />
     <ClCompile Include="..\xDagWallet\src\win\getopt.c" />
+    <ClCompile Include="..\xDagWallet\src\win\winsockx.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\xDagWallet\src\client\address.h" />
@@ -84,6 +85,7 @@
     <ClInclude Include="..\xDagWallet\src\win\getopt.h" />
     <ClInclude Include="..\xDagWallet\src\win\unistd.h" />
     <ClInclude Include="..\xDagWallet\src\win\wintime.h" />
+    <ClInclude Include="..\xDagWallet\src\win\winsockx.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="..\xDagWallet\src\pools\netdb-testnet.txt" />
@@ -172,10 +174,14 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
     <IncludePath>$(OPENSSL_ROOT_32)\include;$(PTHREAD_ROOT)\Include;$(SolutionDir);$(IncludePath)</IncludePath>
+    <OutDir>$(SolutionDir)$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>$(Platform)\$(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
     <IncludePath>$(OPENSSL_ROOT_32)\include;$(PTHREAD_ROOT)\Include;$(SolutionDir);$(IncludePath)</IncludePath>
+    <OutDir>$(SolutionDir)$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>$(Platform)\$(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release_profiling|Win32'">
     <LinkIncremental>false</LinkIncremental>
@@ -195,7 +201,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>_DEBUG;_LIB;DFSTOOLS;HAVE_STRUCT_TIMESPEC;_CRT_SECURE_NO_WARNINGS;_WINSOCK_DEPRECATED_NO_WARNINGS;SHA256_USE_OPENSSL_TXFM;SHA256_OPENSSL_MBLOCK;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_WIN64;_DEBUG;_LIB;DFSTOOLS;HAVE_STRUCT_TIMESPEC;_CRT_SECURE_NO_WARNINGS;_WINSOCK_DEPRECATED_NO_WARNINGS;SHA256_USE_OPENSSL_TXFM;SHA256_OPENSSL_MBLOCK;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
     </ClCompile>
@@ -210,14 +216,18 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>_DEBUG;_LIB;DFSTOOLS;HAVE_STRUCT_TIMESPEC;_CRT_SECURE_NO_WARNINGS;_WINSOCK_DEPRECATED_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_WIN32;_DEBUG;_LIB;DFSTOOLS;HAVE_STRUCT_TIMESPEC;_CRT_SECURE_NO_WARNINGS;_WINSOCK_DEPRECATED_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <CallingConvention>Cdecl</CallingConvention>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
+    <Lib>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -227,7 +237,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>NDEBUG;_LIB;DFSTOOLS;HAVE_STRUCT_TIMESPEC;_CRT_SECURE_NO_WARNINGS;_WINSOCK_DEPRECATED_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_WIN32;_LIB;DFSTOOLS;HAVE_STRUCT_TIMESPEC;_CRT_SECURE_NO_WARNINGS;_WINSOCK_DEPRECATED_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
