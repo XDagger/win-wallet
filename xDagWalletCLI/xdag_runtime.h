@@ -13,7 +13,7 @@
 // This is to disable security warning from Visual C++
 //// #define _CRT_SECURE_NO_WARNINGS
 
-#include "../xDagWallet/src/client/init.h"
+//#include "../xDagWallet/src/client/init.h"
 #include "../xDagWallet/src/client/common.h"
 #include "../xDagWallet/src/client/commands.h"
 #include "../xDagWallet/src/client/client.h"
@@ -65,7 +65,8 @@ NATIVE_LIB_EXPORT bool xdag_dnet_crpt_found();
 
 
 ////------------------------------------
-
+extern pthread_t g_client_thread;
+static int g_client_init_done = 0;
 ////---- Exporting functions wrapping functions ----
 int xdag_init_wrap(int argc, char **argv, const char * pool_address)
 {
@@ -75,7 +76,18 @@ int xdag_init_wrap(int argc, char **argv, const char * pool_address)
 
 	////xdag_set_event_callback(&xdag_event_callback);
 
-	if (xdag_client_init(pool_address)) return -1;
+	xdag_thread_param_t param;
+	strncpy(param.pool_arg, pool_address, 255);
+	param.testnet = 0;
+
+	int err = pthread_create(&g_client_thread, 0, xdag_client_thread, (void*)&param);
+	if (err != 0) {
+		printf("create client_thread failed, error : %s\n", strerror(err));
+		return -1;
+	}
+	while (!g_client_init_done) {
+		sleep(1);
+	}
 
 	return 0;
 }
@@ -110,6 +122,11 @@ int xdag_event_callback(void* thisObj, xdag_event *event)
 	}
 
 	switch (event->event_id) {
+	case event_id_init_done:
+	{
+		g_client_init_done = 1;
+		break;
+	}
 	case event_id_log:
 	{
 		
@@ -182,7 +199,12 @@ int xdag_event_callback(void* thisObj, xdag_event *event)
 		break;
 	}
 
-	case event_id_passwd_again:
+	case event_id_set_passwd:
+	{
+		break;
+	}
+
+	case event_id_set_passwd_again:
 	{
 		break;
 	}
