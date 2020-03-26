@@ -51,6 +51,7 @@ namespace XDagNetWallet.Components
                 transaction.SetStatus(tResponse.State);
                 transaction.PartnerAddress = GetPartnerAddress(walletAddress, tResponse, data.Direction);
                 */
+                transaction.Remark = data.Remark;
 
                 transactionList.Add(transaction);
             }

@@ -322,6 +322,15 @@ namespace XDagNetWallet.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Remark format is incorrect. It should be max length 32 valid ascii chars..
+        /// </summary>
+        internal static string TransferWindow_RemarkFormatError {
+            get {
+                return ResourceManager.GetString("TransferWindow_RemarkFormatError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Transfer XDAG to address.
         /// </summary>
         internal static string TransferWindow_Title {
@@ -606,6 +615,15 @@ namespace XDagNetWallet.Properties {
         internal static string WalletWindow_Transfer_Amount {
             get {
                 return ResourceManager.GetString("WalletWindow_Transfer_Amount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Remark:.
+        /// </summary>
+        internal static string WalletWindow_Transfer_Remark {
+            get {
+                return ResourceManager.GetString("WalletWindow_Transfer_Remark", resourceCulture);
             }
         }
         

@@ -59,16 +59,17 @@ NATIVE_LIB_EXPORT int xdag_get_balance_wrap(void);
 NATIVE_LIB_EXPORT int xdag_get_address_wrap(void);
 
 
-NATIVE_LIB_EXPORT int xdag_transfer_wrap(char* toAddress, char* amountString);
+NATIVE_LIB_EXPORT int xdag_transfer_wrap(const char* toAddress, const char* amountString, const char* remarkString);
 NATIVE_LIB_EXPORT bool xdag_is_valid_wallet_address(const char* address);
 NATIVE_LIB_EXPORT bool xdag_dnet_crpt_found();
+NATIVE_LIB_EXPORT bool xdag_is_valid_remark(const char* remark);
 
 
 ////------------------------------------
 extern pthread_t g_client_thread;
 static int g_client_init_done = 0;
 ////---- Exporting functions wrapping functions ----
-int xdag_init_wrap(int argc, char **argv, const char * pool_address)
+int xdag_init_wrap(int argc, char **argv, const char* pool_address)
 {
 	xdag_init_path(argv[0]);
 
@@ -235,16 +236,18 @@ int xdag_set_password_callback_wrap(int(*callback)(const char *prompt, char *buf
 	return xdag_user_crypt_action((uint32_t *)(void *)callback, 0, 0, 6);
 }
 
-int xdag_transfer_wrap(const char* toAddress, const char* amountString)
+int xdag_transfer_wrap(const char* toAddress, const char* amountString, const char* remarkString)
 {
 	char* address = new char[strlen(toAddress) + 1];
 	char* amount = new char[strlen(amountString) + 1];
+	char* remark = new char[strlen(remarkString) + 1];
 
 	strcpy_s(address, strlen(toAddress) + 1, toAddress);
 	strcpy_s(amount, strlen(amountString) + 1, amountString);
+	strcpy_s(remark, strlen(remarkString) + 1, remarkString);
 
 	char *result = NULL;
-	int err = processXferCommand(amount, address, &result);
+	int err = processXferCommand(amount, address, remark, &result);
 
 	if (err != error_none) {
 		xdag_wrapper_event(event_id_log, (xdag_error_no)err, result);
@@ -288,6 +291,19 @@ bool xdag_dnet_crpt_found()
 
 	free(keys);
 	return is_found;
+}
+
+bool xdag_is_valid_remark(const char* remark)
+{
+	size_t s = validate_remark(remark);
+	if (s < 1 || s > 33)
+	{
+		return false;
+	}
+	else
+	{
+		return true;
+	}
 }
 
 #endif

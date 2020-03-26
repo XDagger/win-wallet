@@ -6,7 +6,7 @@
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         xmlns:local="clr-namespace:XDagNetWallet.UI.Windows"
         mc:Ignorable="d"
-        Title="XDag Wallet" Height="446.868" Width="699.313" Loaded="Window_Loaded" WindowStartupLocation="CenterScreen" WindowStyle="None">
+        Title="XDag Wallet" Height="472.77" Width="699.313" Loaded="Window_Loaded" WindowStartupLocation="CenterScreen" WindowStyle="None">
 
     <Window.Resources>
         <ResourceDictionary>
@@ -26,7 +26,7 @@
         <TabControl x:Name="materialTabControl"
                                  TabStripPlacement="Top"
                                  BorderThickness="1"
-                                 Margin="0,62,-0.333,0">
+                                 Margin="0,62,0,-11">
             <TabItem x:Name="tabAccount" Header="Account" FontSize="20" FontWeight="Bold"
                                         HorizontalContentAlignment="Left">
                 <Grid Width="690">
@@ -55,8 +55,8 @@
             <TabItem x:Name="tabTransfer" Header="Transfer" FontSize="20" FontWeight="Bold"
                                         HorizontalContentAlignment="Stretch"
                                         >
-                <Grid Margin="0,0,0,0" HorizontalAlignment="Stretch">
-                    <Button x:Name="btnTransfer" Content="Generate Transaction" Margin="80,0,74,37.333" Cursor="Hand" FontSize="24" Background="FloralWhite" Foreground="SteelBlue"  Click="btnTransfer_Click" FontWeight="Bold" Height="48" VerticalAlignment="Bottom"/>
+                <Grid Margin="0,0,0,-30" HorizontalAlignment="Stretch">
+                    <Button x:Name="btnTransfer" Content="Generate Transaction" Margin="80,0,74,54" Cursor="Hand" FontSize="24" Background="FloralWhite" Foreground="SteelBlue"  Click="btnTransfer_Click" FontWeight="Bold" Height="48" VerticalAlignment="Bottom"/>
                     <Label x:Name="lblTransferToAddress" Content="To Address:" HorizontalAlignment="Left" Margin="80,26,0,0" VerticalAlignment="Top" Width="157"/>
                     <Label x:Name="lblTransferAmount" Content="Amount to Transfer:" HorizontalAlignment="Left" Margin="80,105,0,0" VerticalAlignment="Top" Width="262"/>
                     <TextBox x:Name="txtTransferTargetAddress" Margin="80,60,74,0" Height="36"
@@ -68,6 +68,10 @@
                                    VerticalAlignment="Top">
                     </TextBox>
                     <ProgressBar x:Name="progressBar" Height="10" Margin="0,0,0,0" VerticalAlignment="Bottom" Visibility="Hidden"/>
+                    <Label x:Name="lblTransferRemark" Content="Remark:" HorizontalAlignment="Left" Margin="80,190,0,0" VerticalAlignment="Top" Width="157"/>
+                    <TextBox x:Name="txtTransferRemark" Margin="80,225,74,0" Height="36"
+                        FontSize="16"
+                        VerticalAlignment="Top"/>
                 </Grid>
             </TabItem>
             <TabItem x:Name="tabHistory" Header="Transaction History" FontSize="20" FontWeight="Bold"
@@ -81,6 +85,7 @@
                             <DataGridTextColumn x:Name="transactionColumn_Status" FontSize="14" FontWeight="Normal" Header="Status" Binding="{Binding Status}" />
                             <DataGridTextColumn x:Name="transactionColumn_BlockAddress" FontWeight="Normal" FontSize="14" Header="Block Address" Binding="{Binding BlockAddress}" />
                             <DataGridTextColumn x:Name="transactionColumn_PartnerAddress" FontWeight="Normal" FontSize="14" Header="Opponent Address" Binding="{Binding PartnerAddress}" />
+                            <DataGridTextColumn x:Name="transactionColumn_Remark" FontWeight="Normal" FontSize="14" Header="Remark" Binding="{Binding Remark}" />
                         </DataGrid.Columns>
                     </DataGrid>
                     <Grid x:Name="grdBusyIndicator" Height="80" Width="200" Margin="201,112,213.667,0" Visibility="Hidden" VerticalAlignment="Top" HorizontalAlignment="Center">

@@ -145,6 +145,8 @@ namespace XDagNetWallet.UI.Windows
             // Transfer
             this.lblTransferToAddress.Content = Properties.Strings.WalletWindow_Transfer_ToAddress;
             this.lblTransferAmount.Content = Properties.Strings.WalletWindow_Transfer_Amount;
+            this.lblTransferRemark.Content = Properties.Strings.WalletWindow_Transfer_Remark;
+
 
             // DataGrid for TransactionHistory
             this.tabHistory.Header = Properties.Strings.WalletWindow_TabHistory;
@@ -349,6 +351,13 @@ namespace XDagNetWallet.UI.Windows
                 return;
             }
 
+            string remarkString = this.txtTransferRemark.Text.Trim();
+            if (!xdagRuntime.ValidateRemark(remarkString))
+            {
+                MessageBox.Show(Properties.Strings.TransferWindow_RemarkFormatError);
+                return;
+            }
+
             string confirmMessage = string.Format(Properties.Strings.TransferWindow_ConfirmTransfer, amount, targetWalletAddress);
             MessageBoxResult result = MessageBox.Show(confirmMessage, Properties.Strings.Common_ConfirmTitle, MessageBoxButton.YesNo);
             if (result == MessageBoxResult.No)
@@ -363,7 +372,7 @@ namespace XDagNetWallet.UI.Windows
                     ShowStatus(Properties.Strings.TransferWindow_CommittingTransaction);
                 },
                 () => {
-                    xdagRuntime.TransferToAddress(targetWalletAddress, amount);
+                    xdagRuntime.TransferToAddress(targetWalletAddress, amount, remarkString);
 
                     return 0;
                 },

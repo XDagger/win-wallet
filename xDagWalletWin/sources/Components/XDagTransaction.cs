@@ -52,6 +52,11 @@ namespace XDagNetWallet.Components
             get; set;
         }
 
+        public string Remark
+        {
+            get; set;
+        }
+
         public TransactionStatus Status
         {
             get; set;
