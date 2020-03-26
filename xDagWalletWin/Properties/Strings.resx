@@ -315,4 +315,7 @@
   <data name="WalletWindow_Transfer_Remark" xml:space="preserve">
     <value>Remark:</value>
   </data>
+  <data name="WalletWindow_HistoryColumns_Remark" xml:space="preserve">
+    <value>Remark</value>
+  </data>
 </root>

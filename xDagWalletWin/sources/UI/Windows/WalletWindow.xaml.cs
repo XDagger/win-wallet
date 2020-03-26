@@ -153,6 +153,7 @@ namespace XDagNetWallet.UI.Windows
             ////this.biTransactionHistoryLoading.BusyContent = Properties.Strings.WalletWindow_HistoryBusy;
             this.grdBusyIndicatorText.Text = Properties.Strings.WalletWindow_HistoryBusy;
 
+            this.transactionColumn_Remark.Header = Properties.Strings.WalletWindow_HistoryColumns_Remark;
             this.transactionColumn_TimeStamp.Header = Properties.Strings.WalletWindow_HistoryColumns_TimeStamp;
             this.transactionColumn_Direction.Header = Properties.Strings.WalletWindow_HistoryColumns_Direction;
             this.transactionColumn_Amount.Header = Properties.Strings.WalletWindow_HistoryColumns_Amount;

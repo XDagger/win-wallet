@@ -547,6 +547,15 @@ namespace XDagNetWallet.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Remark.
+        /// </summary>
+        internal static string WalletWindow_HistoryColumns_Remark {
+            get {
+                return ResourceManager.GetString("WalletWindow_HistoryColumns_Remark", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Status.
         /// </summary>
         internal static string WalletWindow_HistoryColumns_Status {
