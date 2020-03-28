@@ -353,10 +353,17 @@ namespace XDagNetWallet.UI.Windows
             }
 
             string remarkString = this.txtTransferRemark.Text.Trim();
-            if (!xdagRuntime.ValidateRemark(remarkString))
+            if (remarkString.Length > 0)
             {
-                MessageBox.Show(Properties.Strings.TransferWindow_RemarkFormatError);
-                return;
+                if (!xdagRuntime.ValidateRemark(remarkString))
+                {
+                    MessageBox.Show(Properties.Strings.TransferWindow_RemarkFormatError);
+                    return;
+                }
+            }
+            else
+            {
+                remarkString = " ";
             }
 
             string confirmMessage = string.Format(Properties.Strings.TransferWindow_ConfirmTransfer, amount, targetWalletAddress);
