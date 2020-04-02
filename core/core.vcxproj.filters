@@ -8,7 +8,6 @@
     <ClCompile Include="..\xDagWallet\src\client\crypt.c" />
     <ClCompile Include="..\xDagWallet\src\client\dnet_crypt.c" />
     <ClCompile Include="..\xDagWallet\src\client\hash.c" />
-    <ClCompile Include="..\xDagWallet\src\client\init.c" />
     <ClCompile Include="..\xDagWallet\src\client\main.c" />
     <ClCompile Include="..\xDagWallet\src\client\sha256.c" />
     <ClCompile Include="..\xDagWallet\src\client\storage.c" />
@@ -22,9 +21,9 @@
     <ClCompile Include="..\xDagWallet\src\dus\dfslib_random.c" />
     <ClCompile Include="..\xDagWallet\src\dus\dfslib_string.c" />
     <ClCompile Include="..\xDagWallet\src\dus\dfsrsa.c" />
-    <ClCompile Include="..\xDagWallet\src\win\getopt.c" />
     <ClCompile Include="..\xDagWallet\src\client\address.c" />
     <ClCompile Include="..\xDagWallet\src\win\winsockx.c" />
+    <ClCompile Include="..\xDagWallet\src\win\xgetopt.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\xDagWallet\src\client\address.h" />
@@ -37,7 +36,6 @@
     <ClInclude Include="..\xDagWallet\src\client\errno.h" />
     <ClInclude Include="..\xDagWallet\src\client\events.h" />
     <ClInclude Include="..\xDagWallet\src\client\hash.h" />
-    <ClInclude Include="..\xDagWallet\src\client\init.h" />
     <ClInclude Include="..\xDagWallet\src\client\sha256.h" />
     <ClInclude Include="..\xDagWallet\src\client\state.h" />
     <ClInclude Include="..\xDagWallet\src\client\storage.h" />
@@ -56,10 +54,10 @@
     <ClInclude Include="..\xDagWallet\src\dus\dfslib_types.h" />
     <ClInclude Include="..\xDagWallet\src\dus\dfsrsa.h" />
     <ClInclude Include="..\xDagWallet\src\ldus\rbtree.h" />
-    <ClInclude Include="..\xDagWallet\src\win\getopt.h" />
     <ClInclude Include="..\xDagWallet\src\win\unistd.h" />
     <ClInclude Include="..\xDagWallet\src\win\wintime.h" />
     <ClInclude Include="..\xDagWallet\src\win\winsockx.h" />
+    <ClInclude Include="..\xDagWallet\src\win\xgetopt.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="..\xDagWallet\src\pools\netdb-testnet.txt" />

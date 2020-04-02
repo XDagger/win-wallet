@@ -13,7 +13,7 @@
 // This is to disable security warning from Visual C++
 //// #define _CRT_SECURE_NO_WARNINGS
 
-#include "../xDagWallet/src/client/init.h"
+//#include "../xDagWallet/src/client/init.h"
 #include "../xDagWallet/src/client/common.h"
 #include "../xDagWallet/src/client/commands.h"
 #include "../xDagWallet/src/client/client.h"
@@ -59,15 +59,17 @@ NATIVE_LIB_EXPORT int xdag_get_balance_wrap(void);
 NATIVE_LIB_EXPORT int xdag_get_address_wrap(void);
 
 
-NATIVE_LIB_EXPORT int xdag_transfer_wrap(char* toAddress, char* amountString);
+NATIVE_LIB_EXPORT int xdag_transfer_wrap(const char* toAddress, const char* amountString, const char* remarkString);
 NATIVE_LIB_EXPORT bool xdag_is_valid_wallet_address(const char* address);
 NATIVE_LIB_EXPORT bool xdag_dnet_crpt_found();
+NATIVE_LIB_EXPORT bool xdag_is_valid_remark(const char* remark);
 
 
 ////------------------------------------
-
+extern pthread_t g_client_thread;
+static int g_client_init_done = 0;
 ////---- Exporting functions wrapping functions ----
-int xdag_init_wrap(int argc, char **argv, const char * pool_address)
+int xdag_init_wrap(int argc, char **argv, const char* pool_address)
 {
 	xdag_init_path(argv[0]);
 
@@ -75,7 +77,18 @@ int xdag_init_wrap(int argc, char **argv, const char * pool_address)
 
 	////xdag_set_event_callback(&xdag_event_callback);
 
-	if (xdag_client_init(pool_address)) return -1;
+	xdag_thread_param_t param;
+	strncpy(param.pool_arg, pool_address, 255);
+	param.testnet = 0;
+
+	int err = pthread_create(&g_client_thread, 0, xdag_client_thread, (void*)&param);
+	if (err != 0) {
+		printf("create client_thread failed, error : %s\n", strerror(err));
+		return -1;
+	}
+	while (!g_client_init_done) {
+		sleep(1);
+	}
 
 	return 0;
 }
@@ -110,6 +123,11 @@ int xdag_event_callback(void* thisObj, xdag_event *event)
 	}
 
 	switch (event->event_id) {
+	case event_id_init_done:
+	{
+		g_client_init_done = 1;
+		break;
+	}
 	case event_id_log:
 	{
 		
@@ -182,7 +200,12 @@ int xdag_event_callback(void* thisObj, xdag_event *event)
 		break;
 	}
 
-	case event_id_passwd_again:
+	case event_id_set_passwd:
+	{
+		break;
+	}
+
+	case event_id_set_passwd_again:
 	{
 		break;
 	}
@@ -213,16 +236,18 @@ int xdag_set_password_callback_wrap(int(*callback)(const char *prompt, char *buf
 	return xdag_user_crypt_action((uint32_t *)(void *)callback, 0, 0, 6);
 }
 
-int xdag_transfer_wrap(const char* toAddress, const char* amountString)
+int xdag_transfer_wrap(const char* toAddress, const char* amountString, const char* remarkString)
 {
 	char* address = new char[strlen(toAddress) + 1];
 	char* amount = new char[strlen(amountString) + 1];
+	char* remark = new char[strlen(remarkString) + 1];
 
 	strcpy_s(address, strlen(toAddress) + 1, toAddress);
 	strcpy_s(amount, strlen(amountString) + 1, amountString);
+	strcpy_s(remark, strlen(remarkString) + 1, remarkString);
 
 	char *result = NULL;
-	int err = processXferCommand(amount, address, &result);
+	int err = processXferCommand(amount, address, remark, &result);
 
 	if (err != error_none) {
 		xdag_wrapper_event(event_id_log, (xdag_error_no)err, result);
@@ -266,6 +291,19 @@ bool xdag_dnet_crpt_found()
 
 	free(keys);
 	return is_found;
+}
+
+bool xdag_is_valid_remark(const char* remark)
+{
+	size_t s = validate_remark(remark);
+	if (s < 1 || s > 33)
+	{
+		return false;
+	}
+	else
+	{
+		return true;
+	}
 }
 
 #endif

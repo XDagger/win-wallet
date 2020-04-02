@@ -309,4 +309,13 @@
   <data name="WalletWindow_Transfer_ToAddress" xml:space="preserve">
     <value>目标地址：</value>
   </data>
+  <data name="TransferWindow_RemarkFormatError" xml:space="preserve">
+    <value>备注信息格式错误，应为不超过32个英文字母和数字组合</value>
+  </data>
+  <data name="WalletWindow_Transfer_Remark" xml:space="preserve">
+    <value>备注信息：</value>
+  </data>
+  <data name="WalletWindow_HistoryColumns_Remark" xml:space="preserve">
+    <value>备注</value>
+  </data>
 </root>

@@ -145,12 +145,15 @@ namespace XDagNetWallet.UI.Windows
             // Transfer
             this.lblTransferToAddress.Content = Properties.Strings.WalletWindow_Transfer_ToAddress;
             this.lblTransferAmount.Content = Properties.Strings.WalletWindow_Transfer_Amount;
+            this.lblTransferRemark.Content = Properties.Strings.WalletWindow_Transfer_Remark;
+
 
             // DataGrid for TransactionHistory
             this.tabHistory.Header = Properties.Strings.WalletWindow_TabHistory;
             ////this.biTransactionHistoryLoading.BusyContent = Properties.Strings.WalletWindow_HistoryBusy;
             this.grdBusyIndicatorText.Text = Properties.Strings.WalletWindow_HistoryBusy;
 
+            this.transactionColumn_Remark.Header = Properties.Strings.WalletWindow_HistoryColumns_Remark;
             this.transactionColumn_TimeStamp.Header = Properties.Strings.WalletWindow_HistoryColumns_TimeStamp;
             this.transactionColumn_Direction.Header = Properties.Strings.WalletWindow_HistoryColumns_Direction;
             this.transactionColumn_Amount.Header = Properties.Strings.WalletWindow_HistoryColumns_Amount;
@@ -349,6 +352,20 @@ namespace XDagNetWallet.UI.Windows
                 return;
             }
 
+            string remarkString = this.txtTransferRemark.Text.Trim();
+            if (remarkString.Length > 0)
+            {
+                if (!xdagRuntime.ValidateRemark(remarkString))
+                {
+                    MessageBox.Show(Properties.Strings.TransferWindow_RemarkFormatError);
+                    return;
+                }
+            }
+            else
+            {
+                remarkString = " ";
+            }
+
             string confirmMessage = string.Format(Properties.Strings.TransferWindow_ConfirmTransfer, amount, targetWalletAddress);
             MessageBoxResult result = MessageBox.Show(confirmMessage, Properties.Strings.Common_ConfirmTitle, MessageBoxButton.YesNo);
             if (result == MessageBoxResult.No)
@@ -363,7 +380,7 @@ namespace XDagNetWallet.UI.Windows
                     ShowStatus(Properties.Strings.TransferWindow_CommittingTransaction);
                 },
                 () => {
-                    xdagRuntime.TransferToAddress(targetWalletAddress, amount);
+                    xdagRuntime.TransferToAddress(targetWalletAddress, amount, remarkString);
 
                     return 0;
                 },

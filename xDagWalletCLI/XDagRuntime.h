@@ -54,9 +54,11 @@ namespace XDagNetWalletCLI {
 
 		void DoTesting();
 
-		void TransferToAddress(String^ toAddress, double amount);
+		void TransferToAddress(String^ toAddress, double amount, String^ remark);
 
 		bool ValidateWalletAddress(String^ address);
+
+		bool ValidateRemark(String^ remark);
 
 		void RefreshData();
 

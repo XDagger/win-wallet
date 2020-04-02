@@ -32,5 +32,11 @@ namespace XDagNetWallet.ExplorerAPI.Models
         {
             get; set;
         }
+
+        [JsonProperty(PropertyName = "remark")]
+        public string Remark
+        {
+            get; set;
+        }
     }
 }

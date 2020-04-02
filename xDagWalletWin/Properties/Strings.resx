@@ -309,4 +309,13 @@
   <data name="WalletWindow_Transfer_ToAddress" xml:space="preserve">
     <value>To Address:</value>
   </data>
+  <data name="TransferWindow_RemarkFormatError" xml:space="preserve">
+    <value>Remark format is incorrect. It should be max length 32 valid ascii chars.</value>
+  </data>
+  <data name="WalletWindow_Transfer_Remark" xml:space="preserve">
+    <value>Remark:</value>
+  </data>
+  <data name="WalletWindow_HistoryColumns_Remark" xml:space="preserve">
+    <value>Remark</value>
+  </data>
 </root>
