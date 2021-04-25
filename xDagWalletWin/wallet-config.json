@@ -1,5 +1,5 @@
 ﻿{
-    "version": "0.3.1",
+    "version": "0.4.0",
     "wallet_options": {
         "pool_address": "de2.xdag.org:13655",
         "rpc_enabled": false,

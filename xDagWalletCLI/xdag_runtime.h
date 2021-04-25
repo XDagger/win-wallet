@@ -51,7 +51,7 @@ int xdag_event_callback(void* thisObj, xdag_event *event);
 
 
 ////---- Exporting functions ----
-NATIVE_LIB_EXPORT int xdag_init_wrap(int argc, char **argv, const char * pool_address);
+NATIVE_LIB_EXPORT int xdag_init_wrap(int argc, char **argv, const char * pool_address, bool is_test_net);
 NATIVE_LIB_EXPORT int xdag_set_password_callback_wrap(int(*callback)(const char *prompt, char *buf, unsigned size));
 NATIVE_LIB_EXPORT int xdag_set_event_callback_wrap(int(*callback)(void*, xdag_event *));
 NATIVE_LIB_EXPORT int xdag_get_state_wrap(void);
@@ -69,7 +69,7 @@ NATIVE_LIB_EXPORT bool xdag_is_valid_remark(const char* remark);
 extern pthread_t g_client_thread;
 static int g_client_init_done = 0;
 ////---- Exporting functions wrapping functions ----
-int xdag_init_wrap(int argc, char **argv, const char* pool_address)
+int xdag_init_wrap(int argc, char **argv, const char* pool_address, bool is_test_net)
 {
 	xdag_init_path(argv[0]);
 
@@ -79,7 +79,7 @@ int xdag_init_wrap(int argc, char **argv, const char* pool_address)
 
 	xdag_thread_param_t param;
 	strncpy(param.pool_arg, pool_address, 255);
-	param.testnet = 0;
+	param.testnet = is_test_net?1:0;
 
 	int err = pthread_create(&g_client_thread, 0, xdag_client_thread, (void*)&param);
 	if (err != 0) {

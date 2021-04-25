@@ -130,7 +130,7 @@
     <value>Searching connection...</value>
   </data>
   <data name="LogonWindow_Title" xml:space="preserve">
-    <value>Welcome to XDAG Wallet (Version {0})</value>
+    <value>Welcome to XDAG Testnet-Wallet (Version {0})</value>
   </data>
   <data name="Common_ConfirmTitle" xml:space="preserve">
     <value>Confirm</value>
