@@ -223,6 +223,7 @@ namespace XDagNetWallet.UI.Windows
             }
 
             string poolAddress = walletConfig.Options.PoolAddress;
+            bool isTestnet = walletConfig.Options.IsTestNet;
 
             PasswordWindow passwordWindow = new PasswordWindow(Properties.Strings.PasswordWindow_SetPassword, (passwordInput) =>
             {
@@ -257,7 +258,7 @@ namespace XDagNetWallet.UI.Windows
                     ShowStatus(Properties.Strings.LogonWindow_InitializingAccount);
                 },
                 () => {
-                    runtime.Start(poolAddress);
+                    runtime.Start(poolAddress,isTestnet);
 
                     return 0;
                 },
@@ -294,6 +295,8 @@ namespace XDagNetWallet.UI.Windows
             }
 
             string poolAddress = walletConfig.Options.PoolAddress;
+            bool isTestnet = walletConfig.Options.IsTestNet;
+
 
             PasswordWindow passwordWindow = new PasswordWindow(Properties.Strings.PasswordWindow_InputPassword, (passwordInput) =>
             {
@@ -318,7 +321,7 @@ namespace XDagNetWallet.UI.Windows
                 },
                 () => {
                     logonStatus = LogonStatus.Connecting;
-                    runtime.Start(poolAddress);
+                    runtime.Start(poolAddress,isTestnet);
 
                     return 0;
                 },

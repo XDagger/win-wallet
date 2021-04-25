@@ -48,7 +48,7 @@ namespace XDagNetWalletCLI {
 
 		int EventCallback(void* obj, xdag_event * eve);
 
-		void Start(String^ poolAddress);
+		void Start(String^ poolAddress, bool isTestnet);
 
 		bool HasExistingAccount();
 
